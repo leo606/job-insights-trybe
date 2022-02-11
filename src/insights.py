@@ -17,10 +17,7 @@ def get_unique_job_types(path):
         List of unique job types
     """
     data = read(path)
-    jobs_set = set()
-    for row in data:
-        jobs_set.add(row["job_type"])
-    return jobs_set
+    return set(row["job_type"] for row in data)
 
 
 def filter_by_job_type(jobs, job_type):
@@ -56,7 +53,8 @@ def get_unique_industries(path):
     list
         List of unique industries
     """
-    return []
+    data = read(path)
+    return set(row["industry"] for row in data if row["industry"])
 
 
 def filter_by_industry(jobs, industry):
